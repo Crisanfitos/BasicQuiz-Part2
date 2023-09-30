@@ -1,5 +1,6 @@
 package es.ulpgc.eite.da.basicquizlab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
   private int questionIndex=0;
   private int[] replyArray;
   private boolean nextButtonEnabled;
+
+  public static final String EXTRA_ANSWER =
+          "com.example.android.basicquiz.extra.ANSWER";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +127,15 @@ public class MainActivity extends AppCompatActivity {
   //TODO: implementar boton para pasar a siguiente pantalla
   private void onCheatButtonClicked(View v) {
     // no implementado
+    Intent intent = new Intent(this, SecondActivity.class);
+    String Answer;
+    if(replyArray[questionIndex] == 1){
+      Answer = "True";
+    }else {
+      Answer = "False";
+    }
+    intent.putExtra(EXTRA_ANSWER, Answer);
+    startActivity(intent);
   }
 
   //TODO: impedir que podamos hacer click en el boton

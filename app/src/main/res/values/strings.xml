@@ -12,6 +12,9 @@
     <string name="incorrect_text">Incorrect</string>
     <string name="next_button_text">Next</string>
     <string name="cheat_button_text">Cheat</string>
+    <string name="yes_button_next">Yes</string>
+    <string name="no_button_next">No</string>
+    <string name="are_you_sure_text">Are you sure?</string>
 
 
     <string-array name="question_array">
