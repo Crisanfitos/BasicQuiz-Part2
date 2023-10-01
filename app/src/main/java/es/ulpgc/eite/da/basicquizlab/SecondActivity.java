@@ -17,7 +17,7 @@ public class SecondActivity extends AppCompatActivity {
     private TextView cheatText;
     private int Answer;
     private Boolean passToNextQuestion = false;
-    private Intent intent;
+
 
 
     @Override
@@ -37,7 +37,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void startIntent() {
-        intent = getIntent();
+        Intent intent = getIntent();
         Answer = intent.getIntExtra(MainActivity.EXTRA_ANSWER, 100);
     }
 
@@ -64,6 +64,11 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     public void onBackButtonClicked(View v) {
+        if (cheatText.getVisibility() == View.VISIBLE) {
+            Intent replyIntent = new Intent();
+            replyIntent.putExtra("passQuestion", true);
+            setResult(RESULT_OK, replyIntent);
+        }
         finish();
     }
 }

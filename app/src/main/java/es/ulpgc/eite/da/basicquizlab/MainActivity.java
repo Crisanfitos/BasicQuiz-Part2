@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private int questionIndex = 0;
     private int[] replyArray;
     private boolean nextButtonEnabled;
+    private Intent intent;
 
     public static final String EXTRA_ANSWER =
             "com.example.android.basicquiz.extra.ANSWER";
@@ -38,7 +40,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        initLayoutData();
+        initLayoutContent();
+        enableLayoutButtons();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                if (data.getBooleanExtra("passQuestion", false)) {
+                    questionIndex++;
+                }
+            }
+        }
     }
 
     private void initLayoutData() {
@@ -134,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
     //TODO: implementar boton para pasar a siguiente pantalla
     private void onCheatButtonClicked(View v) {
         // no implementado
-        Intent intent = new Intent(this, SecondActivity.class);
+        intent = new Intent(this, SecondActivity.class);
         int Answer = replyArray[questionIndex];
         intent.putExtra(EXTRA_ANSWER, Answer);
-        startActivity(intent);
+        startActivityForResult(intent, 0);
     }
 
     //TODO: impedir que podamos hacer click en el boton
@@ -171,3 +187,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
