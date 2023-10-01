@@ -7,8 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onBackButtonClicked"
+        android:text="@string/backButtonText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cheatText" />
+
     <TextView
-        android:id="@+id/questionText"
+        android:id="@+id/cheatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -19,6 +31,20 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Cheat" />
 
+    <TextView
+        android:id="@+id/cheatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/empty_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:text="Reply" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -27,12 +53,13 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionText">
+        app:layout_constraintTop_toBottomOf="@+id/cheatTitle">
 
         <Button
-            android:id="@+id/trueButton"
+            android:id="@+id/yesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onYesButtonClicked"
             android:text="@string/yes_button_next"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -42,23 +69,13 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/falseButton"
+            android:id="@+id/noButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onNoButtonClicked"
             android:text="@string/no_button_next"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/replyText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/empty_text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:text="Reply" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
